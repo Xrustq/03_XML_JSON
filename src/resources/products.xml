@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<products xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation='products.xsd'>
+    <category categoryName="car">
+        <subcategory subcategoryName="sedan">
+            <product>
+                <manufacturer>Audi</manufacturer>
+                <model>AA666</model>
+                <date>2016-06-13</date>
+                <color>red</color>
+                <price>20000</price>
+                <count>12</count>
+            </product>
+            <product>
+                <manufacturer>BMW</manufacturer>
+                <model>FF100</model>
+                <date>2010-02-02</date>
+                <color>black</color>
+                <price>18000</price>
+                <count>40</count>
+            </product>
+        </subcategory>
+        <subcategory subcategoryName="hatchback">
+            <product>
+                <manufacturer>Volkswagen</manufacturer>
+                <model>Gos111</model>
+                <date>2015-11-12</date>
+                <color>white</color>
+                <price>15000</price>
+                <count>20</count>
+            </product>
+        </subcategory>
+    </category>
+    <category categoryName="motorcycle">
+        <subcategory subcategoryName="sport">
+            <product>
+                <manufacturer>Kawasaki</manufacturer>
+                <model>ZX666</model>
+                <date>2017-04-22</date>
+                <color>green</color>
+                <price>11000</price>
+                <count>15</count>
+            </product>
+        </subcategory>
+        <subcategory subcategoryName="supermoto">
+            <product>
+                <manufacturer>Honda</manufacturer>
+                <model>cr900</model>
+                <date>2011-02-03</date>
+                <color>orange</color>
+                <price>5000</price>
+                <count>4</count>
+            </product>
+        </subcategory>
+    </category>
+</products>
