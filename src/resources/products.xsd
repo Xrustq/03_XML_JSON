@@ -21,7 +21,13 @@
                                                             </xs:restriction>
                                                         </xs:simpleType>
                                                     </xs:element>
-                                                    <xs:element name="date" type="xs:date"/>
+                                                    <xs:element name="date">
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:pattern value="[0-9]{2}-[0-9]{2}-[0-9]{4}"/>
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
                                                     <xs:element name="color" type="xs:string"/>
                                                     <xs:element name="price" type="xs:integer"/>
                                                     <xs:element name="count" type="xs:integer"/>
