@@ -7,10 +7,6 @@ import main.entity.Products;
 import main.entity.Subcategory;
 
 import javax.xml.bind.*;
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
-import javax.xml.transform.stream.StreamSource;
 import java.io.*;
 import java.util.List;
 
@@ -33,8 +29,7 @@ public class Actions {
         }
     }
 
-    public Products unmarshall(File file) throws XMLStreamException, JAXBException {
-
+    public Products unmarshall(File file) throws JAXBException {
 
         JAXBContext jc = JAXBContext.newInstance(Products.class);
         Unmarshaller unmarshaller = jc.createUnmarshaller();
@@ -44,8 +39,6 @@ public class Actions {
 
     public void XmlToJson(Products products, File file) {
         Gson gson = new Gson();
-        String json = gson.toJson(products);
-        System.out.println(json);
         try (FileWriter writer = new FileWriter(file)) {
 
             gson.toJson(products, writer);
@@ -57,7 +50,7 @@ public class Actions {
 
     public void JsonToXml(File json, File xml) {
         Gson gson = new Gson();
-        Products products = new Products();
+        Products products;
 
         try (Reader reader = new FileReader(json)) {
 
@@ -78,15 +71,13 @@ public class Actions {
         for (Category category : productsList) {
             System.out.println(category);
             List<Subcategory> subcategoryList = category.getSubcategory();
-            for (Subcategory subcategory: subcategoryList) {
+            for (Subcategory subcategory : subcategoryList) {
                 System.out.println(subcategory);
                 List<Product> productList = subcategory.getProduct();
-                for (Product product: productList) {
+                for (Product product : productList) {
                     System.out.println(product);
                 }
             }
-
         }
-
     }
 }
