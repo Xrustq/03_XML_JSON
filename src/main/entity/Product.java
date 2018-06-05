@@ -3,8 +3,6 @@ package main.entity;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Product {
@@ -13,7 +11,7 @@ public class Product {
     @XmlElement
     private String model;
     @XmlElement
-    private Date date;
+    private String date;
     @XmlElement
     private String color;
     @XmlElement
@@ -37,11 +35,11 @@ public class Product {
         this.model = model;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -72,12 +70,10 @@ public class Product {
 
     @Override
     public String toString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String dateString = sdf.format(date);
         return  "Product{" +
                 "manufacturer='" + manufacturer + '\'' +
                 ", model='" + model + '\'' +
-                ", date=" + dateString +
+                ", date=" + date +
                 ", color='" + color + '\'' +
                 ", price='" + price + '\'' +
                 ", count='" + count + '\'' +

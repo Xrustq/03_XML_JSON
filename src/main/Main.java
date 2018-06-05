@@ -1,46 +1,68 @@
 package main;
 
-import main.entity.Category;;
-import main.entity.Product;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import main.entity.Products;
-import main.entity.Subcategory;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamReader;
-import javax.xml.transform.stream.StreamSource;
-import java.util.List;
-
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Main {
+
+
+
+
+
+
     public static void main(String[] args) throws Exception {
-        XMLInputFactory xif = XMLInputFactory.newFactory();
-        StreamSource xml = new StreamSource("src/resources/products.xml");
-        XMLStreamReader xsr = xif.createXMLStreamReader(xml);
 
-        JAXBContext jc = JAXBContext.newInstance(Products.class);
-        Unmarshaller unmarshaller = jc.createUnmarshaller();
-        JAXBElement<Products> jb = unmarshaller.unmarshal(xsr, Products.class);
-        xsr.close();
+        Actions actions = new Actions();
 
-        Products products = jb.getValue();
+//            Product product = new Product();
+//            product.setManufacturer("Manufacturer");
+//            product.setColor("Color");
+//            product.setCount(1);
+//            product.setDate("2016-01-01");
+//            product.setModel("Model");
+//            product.setPrice(2);
+//
+//            Subcategory subcategory = new Subcategory();
+//            subcategory.setProduct(new ArrayList<>());
+//            List<Product> productList = subcategory.getProduct();
+//            productList.add(product);
+//            subcategory.setSubcategoryName("subcategory");
+//
+//            Category category = new Category();
+//            category.setSubcategory(new ArrayList<>());
+//            List<Subcategory> subcategoryList = category.getSubcategory();
+//            subcategoryList.add(subcategory);
+//            category.setCategoryName("category");
+//
+//            Products products = new Products();
+//            products.setCategory(new ArrayList<>());
+//            List<Category> categoryList = products.getCategory();
+//            categoryList.add(category);
 
-        List<Category> productsList = products.getCategory();
-        for (Category category : productsList) {
-            System.out.println(category);
-            List<Subcategory> subcategoryList = category.getSubcategory();
-            for (Subcategory subcategory: subcategoryList) {
-                System.out.println(subcategory);
-                List<Product> productList = subcategory.getProduct();
-                for (Product product: productList) {
-                    System.out.println(product);
-                }
-            }
 
-            
-        }
+        Products products = actions.unmarshall(new File("C:\\Users\\Rustam_Mirgazizov\\Desktop\\EPAM Training\\03_XML_JSON\\src\\resources\\products.xml"));
 
+//        actions.print(products);
+//        actions.marshall(products, new File("D:\\file.xml"));
+
+//        Gson gson = new Gson();
+//        String json = gson.toJson(products);
+//        System.out.println(json);
+//        try (FileWriter writer = new FileWriter("C:\\Users\\Rustam_Mirgazizov\\Desktop\\EPAM Training\\03_XML_JSON\\src\\resources\\staff.json")) {
+//
+//            gson.toJson(products, writer);
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+        actions.XmlToJson(products, new File("C:\\Users\\Rustam_Mirgazizov\\Desktop\\EPAM Training\\03_XML_JSON\\src\\resources\\staff.json"));
+        actions.JsonToXml(new File("C:\\Users\\Rustam_Mirgazizov\\Desktop\\EPAM Training\\03_XML_JSON\\src\\resources\\staff.json"),
+                new File("C:\\Users\\Rustam_Mirgazizov\\Desktop\\EPAM Training\\03_XML_JSON\\src\\resources\\test.xml"));
     }
 }
